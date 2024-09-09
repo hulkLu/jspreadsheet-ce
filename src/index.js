@@ -7483,15 +7483,17 @@ if (! formula && typeof(require) === 'function') {
                     if (jexcel.current.options.editable == true) {
                         if (jexcel.current.selectedRow) {
                             if (jexcel.current.options.allowDeleteRow == true) {
-                                if (confirm(jexcel.current.options.text.areYouSureToDeleteTheSelectedRows)) {
-                                    jexcel.current.deleteRow();
-                                }
+                                // if (confirm(jexcel.current.options.text.areYouSureToDeleteTheSelectedRows)) {
+                                //     jexcel.current.deleteRow();
+                                // }
+                                jexcel.current.setValue(jexcel.current.highlighted, '');
                             }
                         } else if (jexcel.current.selectedHeader) {
                             if (jexcel.current.options.allowDeleteColumn == true) {
-                                if (confirm(jexcel.current.options.text.areYouSureToDeleteTheSelectedColumns)) {
-                                    jexcel.current.deleteColumn();
-                                }
+                                // if (confirm(jexcel.current.options.text.areYouSureToDeleteTheSelectedColumns)) {
+                                //     jexcel.current.deleteColumn();
+                                // }
+                                jexcel.current.setValue(jexcel.current.highlighted, '');
                             }
                         } else {
                             // Change value
