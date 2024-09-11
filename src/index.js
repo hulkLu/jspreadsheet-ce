@@ -964,8 +964,6 @@ if (! formula && typeof(require) === 'function') {
             // Onload
             if(obj.options.freezeRows){
                 let hei =  el.querySelectorAll(`thead tr td`)?.[0]?.offsetHeight || 24;
-                console.warn('hei',hei);
-                
                 for (let index = 0; index < obj.options.freezeRows; index++) {
                     const tds = el.querySelectorAll(`td[data-y="${index}"]`);
                     tds.forEach((td) => {
@@ -3453,9 +3451,7 @@ if (! formula && typeof(require) === 'function') {
                 obj.dispatch('onresizerow', el, row, height, oldHeight);
                 
                 if(obj.options.freezeRows){
-                    let hei =  el.querySelectorAll(`thead tr td`)?.[0].offsetHeight || 24;
-                    console.warn('hei',hei);
-                    
+                    let hei =  el.querySelectorAll(`thead tr td`)?.[0].offsetHeight || 24;                    
                     for (let index = 0; index < obj.options.freezeRows; index++) {
                         const tds = el.querySelectorAll(`td[data-y="${index}"]`);
                         tds.forEach((td) => {
@@ -7355,8 +7351,6 @@ if (! formula && typeof(require) === 'function') {
 
 
                     for (var j = 0; j < obj.rows.length; j++) {
-                        console.log('obj.options.freezeRows',obj.options.freezeRows);
-                        
                         if(j < obj.options.freezeRows){
                             if (obj.rows[j] && obj.records[j][i]) {
                                 obj.records[j][i].classList.add('jexcel_freezed');

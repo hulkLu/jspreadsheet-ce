@@ -10,8 +10,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js"></script>
 
-<div id="spreadsheet"></div>
+<button onclick="toggleDisplay()">display</button>
+<div id="spreadsheet" style="display: none;"></div>
 
+<script>
+function toggleDisplay() {
+    var spreadsheetDiv = document.getElementById('spreadsheet');
+    // 检查当前的显示状态，并根据情况进行切换
+    if (spreadsheetDiv.style.display === 'none') {
+        spreadsheetDiv.style.display = 'block';  // 显示
+    } else {
+        spreadsheetDiv.style.display = 'none';   // 隐藏
+    }
+}
+</script>
 <script>
 
     var data2 = [
@@ -72,7 +84,7 @@
         tableOverflow: true,
         freezeColumns: 2,
         freezeRows: 3,
-        rowResize:true,
+        rowResize: true,
         onload(element, instance) {
         },
         updateCornerPosition: () => {

@@ -607,7 +607,7 @@ declare namespace jspreadsheet {
       colIndex: string | null,
       rowIndex: string | null,
       event: PointerEvent
-    ) => object[];
+    ) => object[] | null;
 
     /**
      * If true, copy and export will bring formula results. If false, it will bring formulas.
@@ -680,6 +680,11 @@ declare namespace jspreadsheet {
      * Set the initial footer of the spreadsheet
      */
     footers?: string[][];
+
+    /**
+     * Number of rows frozen at the top of the spreadsheet.
+     */
+    freezeRows?: number;
 
     /**
      * Number of columns frozen at the top of the spreadsheet.
