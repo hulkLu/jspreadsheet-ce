@@ -958,10 +958,12 @@ if (! formula && typeof(require) === 'function') {
 
             // Updata table with custom configurations if applicable
             obj.updateTable();
+            
+            obj.dispatch('onload', el, obj);
 
             // Onload
             if(obj.options.freezeRows){
-                let hei =  el.querySelectorAll(`thead tr td`)?.[0].offsetHeight || 24;
+                let hei =  el.querySelectorAll(`thead tr td`)?.[0]?.offsetHeight || 24;
                 console.warn('hei',hei);
                 
                 for (let index = 0; index < obj.options.freezeRows; index++) {
@@ -969,7 +971,7 @@ if (! formula && typeof(require) === 'function') {
                     tds.forEach((td) => {
                         td.style.backgroundColor = "#f2f2f2";
                         td.style.position = "sticky";
-                        td.style.top = hei+"px";
+                        td.style.top = `${hei}px`;
                         td.style.zIndex = "3";
                         if(index === obj.options.freezeRows - 1){
                             td.style.borderBottom = "1px solid #d4d4d4";
@@ -979,8 +981,6 @@ if (! formula && typeof(require) === 'function') {
                 }
             }
 
-            
-            obj.dispatch('onload', el, obj);
         }
 
         /**
@@ -3461,7 +3461,7 @@ if (! formula && typeof(require) === 'function') {
                         tds.forEach((td) => {
                             td.style.backgroundColor = "#f2f2f2";
                             td.style.position = "sticky";
-                            td.style.top = hei+"px";
+                            td.style.top = `${hei}px`;
                             td.style.zIndex = "3";
                             if(index === obj.options.freezeRows - 1){
                                 td.style.borderBottom = "1px solid #d4d4d4";
