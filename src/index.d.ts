@@ -682,6 +682,11 @@ declare namespace jspreadsheet {
     footers?: string[][];
 
     /**
+     * Number of rows frozen at the top of the spreadsheet.
+     */
+    freezeRows?: number;
+
+    /**
      * Number of columns frozen at the top of the spreadsheet.
      */
     freezeColumns?: number;

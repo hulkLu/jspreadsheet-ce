@@ -962,7 +962,8 @@ if (! formula && typeof(require) === 'function') {
             // Onload
             if(obj.options.freezeRows){
                 let hei =  el.querySelectorAll(`thead tr td`)?.[0].offsetHeight || 24;
-
+                console.warn('hei',hei);
+                
                 for (let index = 0; index < obj.options.freezeRows; index++) {
                     const tds = el.querySelectorAll(`td[data-y="${index}"]`);
                     tds.forEach((td) => {
@@ -973,10 +974,11 @@ if (! formula && typeof(require) === 'function') {
                         if(index === obj.options.freezeRows - 1){
                             td.style.borderBottom = "1px solid #d4d4d4";
                         }
-                    })     
-                    hei+=tds[0].offsetHeight || obj.options.defaultRowHeight || 24;
+                    })
+                    hei+=tds[index].offsetHeight || obj.options.defaultRowHeight || 24;
                 }
             }
+
             
             obj.dispatch('onload', el, obj);
         }
@@ -3449,10 +3451,11 @@ if (! formula && typeof(require) === 'function') {
 
                 // On resize column
                 obj.dispatch('onresizerow', el, row, height, oldHeight);
-
+                
                 if(obj.options.freezeRows){
                     let hei =  el.querySelectorAll(`thead tr td`)?.[0].offsetHeight || 24;
-
+                    console.warn('hei',hei);
+                    
                     for (let index = 0; index < obj.options.freezeRows; index++) {
                         const tds = el.querySelectorAll(`td[data-y="${index}"]`);
                         tds.forEach((td) => {
@@ -3463,8 +3466,8 @@ if (! formula && typeof(require) === 'function') {
                             if(index === obj.options.freezeRows - 1){
                                 td.style.borderBottom = "1px solid #d4d4d4";
                             }
-                        })     
-                        hei+=tds[0].offsetHeight || obj.options.defaultRowHeight || 24;
+                        })
+                        hei+=tds[index].offsetHeight || obj.options.defaultRowHeight || 24;
                     }
                 }
 
