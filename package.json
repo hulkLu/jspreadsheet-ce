@@ -43,7 +43,7 @@
     },
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "version": "4.13.2",
+    "version": "4.13.21",
     "scripts": {
         "test": "mocha --recursive --require=mocha.config.cjs",
         "test:watch": "mocha --recursive --watch --parallel --reporter min",
