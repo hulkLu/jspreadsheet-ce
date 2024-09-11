@@ -64,6 +64,19 @@
             { type: 'text', title: 'Course Title 4', width: 300 },
             { type: 'text', title: 'Course Title 5', width: 300 },
             { type: 'text', title: 'Time', width: 100, editor: customColumn },
-        ]
+        ],
+        // fixedRows: 5,
+        minDimensions: [30, 60],
+        tableWidth: "80vw",
+        tableHeight: "85vh",
+        tableOverflow: true,
+        freezeColumns: 2,
+        freezeRows: 3,
+        rowResize:true,
+        onload(element, instance) {
+        },
+        updateCornerPosition: () => {
+
+        }
     });
 </script>

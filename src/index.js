@@ -260,6 +260,7 @@ if (! formula && typeof(require) === 'function') {
             // Detach the HTML table when calling updateTable
             detachForUpdates: false,
             freezeColumns:null,
+            freezeRows:null,
             // Texts
             text:{
                 noRecordsFound: 'No records found',
@@ -959,6 +960,24 @@ if (! formula && typeof(require) === 'function') {
             obj.updateTable();
 
             // Onload
+            if(obj.options.freezeRows){
+                let hei =  el.querySelectorAll(`thead tr td`)?.[0].offsetHeight || 24;
+
+                for (let index = 0; index < obj.options.freezeRows; index++) {
+                    const tds = el.querySelectorAll(`td[data-y="${index}"]`);
+                    tds.forEach((td) => {
+                        td.style.backgroundColor = "#f2f2f2";
+                        td.style.position = "sticky";
+                        td.style.top = hei+"px";
+                        td.style.zIndex = "3";
+                        if(index === obj.options.freezeRows - 1){
+                            td.style.borderBottom = "1px solid #d4d4d4";
+                        }
+                    })     
+                    hei+=tds[0].offsetHeight || obj.options.defaultRowHeight || 24;
+                }
+            }
+            
             obj.dispatch('onload', el, obj);
         }
 
@@ -3394,7 +3413,7 @@ if (! formula && typeof(require) === 'function') {
         obj.setHeight = function (row, height, oldHeight) {
             if (height > 0) {
                 // In case the column is an object
-                if (typeof(row) == 'object') {
+                if (typeof(row) == 'object') {  
                     row = row.getAttribute('data-y');
                 }
 
@@ -3430,6 +3449,24 @@ if (! formula && typeof(require) === 'function') {
 
                 // On resize column
                 obj.dispatch('onresizerow', el, row, height, oldHeight);
+
+                if(obj.options.freezeRows){
+                    let hei =  el.querySelectorAll(`thead tr td`)?.[0].offsetHeight || 24;
+
+                    for (let index = 0; index < obj.options.freezeRows; index++) {
+                        const tds = el.querySelectorAll(`td[data-y="${index}"]`);
+                        tds.forEach((td) => {
+                            td.style.backgroundColor = "#f2f2f2";
+                            td.style.position = "sticky";
+                            td.style.top = hei+"px";
+                            td.style.zIndex = "3";
+                            if(index === obj.options.freezeRows - 1){
+                                td.style.borderBottom = "1px solid #d4d4d4";
+                            }
+                        })     
+                        hei+=tds[0].offsetHeight || obj.options.defaultRowHeight || 24;
+                    }
+                }
 
                 // Update corner position
                 obj.updateCornerPosition();
@@ -3890,6 +3927,7 @@ if (! formula && typeof(require) === 'function') {
 
                 // Test order
                 var temp = [];
+                
                 if (obj.options.columns[column].type == 'number' || obj.options.columns[column].type == 'numeric' || obj.options.columns[column].type == 'percentage' || obj.options.columns[column].type == 'autonumber' || obj.options.columns[column].type == 'color') {
                     for (var j = 0; j < obj.options.data.length; j++) {
                         temp[j] = [ j, Number(obj.options.data[j][column]) ];
@@ -3904,23 +3942,34 @@ if (! formula && typeof(require) === 'function') {
                     }
                 }
 
-                // Default sorting method
                 if (typeof(obj.options.sorting) !== 'function') {
                     obj.options.sorting = function(direction) {
                         return function(a, b) {
                             var valueA = a[1];
                             var valueB = b[1];
-
-                            if (! direction) {
+                
+                            if (!direction) {
+                                // 升序排序
                                 return (valueA === '' && valueB !== '') ? 1 : (valueA !== '' && valueB === '') ? -1 : (valueA > valueB) ? 1 : (valueA < valueB) ? -1 :  0;
                             } else {
+                                // 降序排序
                                 return (valueA === '' && valueB !== '') ? 1 : (valueA !== '' && valueB === '') ? -1 : (valueA > valueB) ? -1 : (valueA < valueB) ? 1 :  0;
                             }
                         }
                     }
                 }
-
-                temp = temp.sort(obj.options.sorting(order));
+                
+                // 根据 obj.options.freezeRows 拆分数组
+                var freezeRows = obj.options.freezeRows || 0; // 获取冻结行数
+                var frozenPart = temp.slice(0, freezeRows);   // 前 freezeRows 行的部分
+                var sortablePart = temp.slice(freezeRows);    // 剩下的部分
+                
+                // 对剩余的部分进行排序
+                sortablePart = sortablePart.sort(obj.options.sorting(order));
+                
+                // 合并冻结部分和排序后的部分
+                temp = frozenPart.concat(sortablePart);
+                
 
                 // Save history
                 var newValue = [];
@@ -7296,13 +7345,27 @@ if (! formula && typeof(require) === 'function') {
                             width += parseInt(obj.options.columns[i-1].width);
                         }
                     }
+                    
+                    // 标题固定
                     obj.headers[i].classList.add('jexcel_freezed');
                     obj.headers[i].style.left = width + 'px';
+
+
                     for (var j = 0; j < obj.rows.length; j++) {
-                        if (obj.rows[j] && obj.records[j][i]) {
-                            var shifted = (scrollLeft + (i > 0 ? obj.records[j][i-1].style.width : 0)) - 51 + 'px';
-                            obj.records[j][i].classList.add('jexcel_freezed');
-                            obj.records[j][i].style.left = shifted;
+                        console.log('obj.options.freezeRows',obj.options.freezeRows);
+                        
+                        if(j < obj.options.freezeRows){
+                            if (obj.rows[j] && obj.records[j][i]) {
+                                obj.records[j][i].classList.add('jexcel_freezed');
+                                obj.records[j][i].style.left = width + 'px';
+                                obj.records[j][i].style.zIndex = "4"; 
+                            }
+                        }else{
+                            if (obj.rows[j] && obj.records[j][i]) {
+                                var shifted = (scrollLeft + (i > 0 ? obj.records[j][i-1].style.width : 0)) - 51 + 'px';
+                                obj.records[j][i].classList.add('jexcel_freezed');
+                                obj.records[j][i].style.left = shifted;
+                            }
                         }
                     }
                 }
