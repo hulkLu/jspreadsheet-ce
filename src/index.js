@@ -845,9 +845,15 @@ if (!formula && typeof (require) === 'function') {
                 if (typeof (data) == 'string') {
                     data = JSON.parse(data);
                 }
-                data = obj.dispatch('onbeforechange', el, undefined, undefined, undefined, data);
                 obj.options.data = data;
-            } else {
+            }
+            // else {
+            //     if (obj.onbeforechange) {
+            //         obj.options.data = obj.dispatch('onbeforechange', el, undefined, undefined, undefined, obj.options.data);
+            //     }
+            // }
+            var _data = obj.dispatch('onbeforechange', el, undefined, undefined, undefined, obj.options.data);
+            if (_data) {
                 obj.options.data = obj.dispatch('onbeforechange', el, undefined, undefined, undefined, obj.options.data);
             }
 
