@@ -10,19 +10,214 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js"></script>
 
-<button onclick="toggleDisplay()">display</button>
-<div id="spreadsheet" style="display: none;"></div>
+<p>
+    <button onclick="toggleDisplay()">点击setData</button>
+</p>
+
+<div id="spreadsheet"></div>
 
 <script>
-function toggleDisplay() {
-    var spreadsheetDiv = document.getElementById('spreadsheet');
-    // 检查当前的显示状态，并根据情况进行切换
-    if (spreadsheetDiv.style.display === 'none') {
-        spreadsheetDiv.style.display = 'block';  // 显示
-    } else {
-        spreadsheetDiv.style.display = 'none';   // 隐藏
+    function toggleDisplay() {
+        console.log('myTable', myTable);
+
+        myTable.options.columns = [
+            {
+                "title": "项目",
+                "type": "text",
+                "readOnly": true,
+                "width": 180
+            },
+            {
+                "title": "单位",
+                "type": "text",
+                "readOnly": true,
+                "width": 180
+            },
+            {
+                "title": "Cut1实测值",
+                "type": "hidden",
+                "width": 120
+            },
+            {
+                "title": "Cut1校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2实测值",
+                "type": "hidden",
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+            {
+                "title": "Cut2校正值",
+                "type": "numeric",
+                "allowEmpty": true,
+                "width": 120
+            },
+        ];
+
+        myTable.setData([
+            ['PHP', '14:00', '14:00', '12331323', "1", '12323aasd'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+            ['Javascript', '16:30', '14:00'],
+        ])
+        myTable.el.innerHTML = '';
+        myTable.createTable();
+        // myTable
+        console.log('myTable.options.columns', myTable.options.columns);
+        console.log('myTable.options.columns', myTable.getData());
+
+
     }
-}
 </script>
 <script>
 
@@ -69,26 +264,30 @@ function toggleDisplay() {
 
     myTable = jspreadsheet(document.getElementById('spreadsheet'), {
         data: data2,
-        columns: [
-            { type: 'text', title: 'Course Title 1', width: 300 },
-            { type: 'text', title: 'Course Title 2', width: 300 },
-            { type: 'text', title: 'Course Title 3', width: 300 },
-            { type: 'text', title: 'Course Title 4', width: 300 },
-            { type: 'text', title: 'Course Title 5', width: 300 },
-            { type: 'text', title: 'Time', width: 100, editor: customColumn },
-        ],
+        // columns: [
+        //     { type: 'text', title: 'Course Title 1', width: 300 },
+        //     { type: 'text', title: 'Course Title 2', width: 300 },
+        //     // { type: 'text', title: 'Course Title 3', width: 300 },
+        //     // { type: 'text', title: 'Course Title 4', width: 300 },
+        //     // { type: 'text', title: 'Course Title 5', width: 300 },
+        //     // { type: 'text', title: 'Time', width: 100, editor: customColumn },
+        // ],
         // fixedRows: 5,
-        minDimensions: [30, 60],
-        tableWidth: "80vw",
+        minDimensions: [2, 2],
+        tableWidth: "800px",
         tableHeight: "85vh",
         tableOverflow: true,
         freezeColumns: 2,
-        freezeRows: 3,
+        freezeRows: 0,
         rowResize: true,
+        onbeforechange(el, cell, x, y, value) {
+            console.log('onbeforechange', el, cell, x, y, value);
+
+            return [
+                [...value[0]]
+            ];
+        },
         onload(element, instance) {
         },
-        updateCornerPosition: () => {
-
-        }
     });
 </script>

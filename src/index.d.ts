@@ -10,12 +10,12 @@ declare namespace jspreadsheet {
     | string
     | number
     | {
-        id: string | number;
-        name: string | number;
-        title?: string | number;
-        image?: string;
-        group?: string | number;
-      };
+      id: string | number;
+      name: string | number;
+      title?: string | number;
+      image?: string;
+      group?: string | number;
+    };
 
   interface CalendarOptions {
     /**
@@ -49,12 +49,12 @@ declare namespace jspreadsheet {
 
     /** Event fired when calendar value changes. */
     onchange?:
-      | ((
-          calendarElement: HTMLInputElement,
-          newValue: string,
-          oldValue: string
-        ) => void)
-      | null;
+    | ((
+      calendarElement: HTMLInputElement,
+      newValue: string,
+      oldValue: string
+    ) => void)
+    | null;
 
     /** Event fired when calendar modal is closed. */
     onclose?: Function | null;
@@ -184,17 +184,17 @@ declare namespace jspreadsheet {
      * @default "text"
      */
     type?:
-      | "text"
-      | "numeric"
-      | "hidden"
-      | "dropdown"
-      | "autocomplete"
-      | "checkbox"
-      | "radio"
-      | "calendar"
-      | "image"
-      | "color"
-      | "html";
+    | "text"
+    | "numeric"
+    | "hidden"
+    | "dropdown"
+    | "autocomplete"
+    | "checkbox"
+    | "radio"
+    | "calendar"
+    | "image"
+    | "color"
+    | "html";
 
     /** Column width. */
     width?: string | number;
@@ -204,6 +204,8 @@ declare namespace jspreadsheet {
      * @default false
      */
     wordWrap?: boolean;
+    
+    allowEmpty?: boolean;
   }
 
   interface DropdownColumn extends BaseColumn {
@@ -775,10 +777,10 @@ declare namespace jspreadsheet {
      */
     onbeforechange?: (
       element: JspreadsheetInstanceElement,
-      cell: HTMLTableCellElement,
-      colIndex: string | number,
-      rowIndex: string | number,
-      newValue: CellValue
+      cell?: HTMLTableCellElement,
+      colIndex?: string | number,
+      rowIndex?: string | number,
+      newValue?: CellValue
     ) => undefined | CellValue;
 
     /**
@@ -2351,9 +2353,9 @@ declare namespace jspreadsheet {
      * The array is composed respectively by the indices of the leftmost column of the selection [0], the topmost row of the selection [1], the rightmost column of the selection [2] and the bottommost row selection [3].
      */
     selectedCell:
-      | null
-      | [number, number, number, number]
-      | [string, string, string, string];
+    | null
+    | [number, number, number, number]
+    | [string, string, string, string];
 
     selectedContainer: null | [number, number, number, number];
 
@@ -2511,10 +2513,10 @@ declare namespace jspreadsheet {
         | string
         | HTMLTableCellElement
         | (
-            | string
-            | { x: number; y: number; newValue?: CellValue; value?: CellValue }
-            | HTMLTableCellElement
-          )[],
+          | string
+          | { x: number; y: number; newValue?: CellValue; value?: CellValue }
+          | HTMLTableCellElement
+        )[],
       value?: CellValue,
       force?: boolean
     ) => void;
