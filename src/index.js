@@ -111,6 +111,8 @@ if (!formula && typeof (require) === 'function') {
             // Rows and columns definitions
             rows: [],
             columns: [],
+            // header default number
+            numberHeader: true,
             // Deprected legacy options
             colHeaders: [],
             colWidths: [],
@@ -8659,7 +8661,13 @@ if (!formula && typeof (require) === 'function') {
             columnName = String.fromCharCode(65 + modulo).toString() + columnName;
             dividend = parseInt((dividend - modulo) / 26);
         }
-        return columnName;
+        if (obj.options.numberHeader) {
+            // 修改为顶部是数字
+            return columnNumber + 1;
+        } else {
+            // 默认是将数字换为字母
+            return columnName;
+        }
     }
 
     /**
